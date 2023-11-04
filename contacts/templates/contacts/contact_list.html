@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1 class="text-3xl font-semibold mb-4">Gestion des Contacts</h1>
+  <a href="{% url 'contact_create' %}" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700 mt-4 block">Ajouter un contact</a>
+  <ul>
+    {% for contact in contacts %}
+      <li class="bg-white p-4 shadow-md my-4 rounded-lg">
+        <span class="text-lg">{{ contact.first_name }} {{ contact.last_name }}</span>
+        <span class="text-gray-600 block">{{ contact.phone }}</span>
+        <div class="mt-2">
+          <a href="{% url 'contact_update' contact.pk %}" class="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-700">Modifier</a>
+          <a href="{% url 'contact_delete' contact.pk %}" class="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-700 ml-2">Supprimer</a>
+        </div>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}
